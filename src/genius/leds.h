@@ -1,3 +1,6 @@
+#define MEIO_SEGUNDO 500
+#define UM_SEGUNDO 500
+
 void acenderLed(int portaLed){
   digitalWrite(portaLed, HIGH);
 }
@@ -17,6 +20,17 @@ void piscarTodosLeds(){
   apagarLed(PORTA_LED_VERMELHO);
   apagarLed(PORTA_LED_AZUL);
   delay(MEIO_SEGUNDO);
+}
+
+void piscarTodosLedsAleatoriamente(){
+  for (int i = 0; i < 4; i++){
+    long portaLed = random(PORTA_LED_VERDE, PORTA_LED_AZUL + 1);
+    acenderLed(portaLed);
+    delay(UM_SEGUNDO);
+    apagarLed(portaLed);
+  }
+
+  piscarTodosLeds();
 }
 
 void piscarLed(int portaLed){
