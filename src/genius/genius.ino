@@ -6,16 +6,13 @@ void setup(){
 }
 
 void loop(){
-  /*piscarTodosLeds();
-  
-  piscarLed(PORTA_LED_VERDE);
-  piscarLed(PORTA_LED_AMARELO);
-  piscarLed(PORTA_LED_VERMELHO);
-  piscarLed(PORTA_LED_AZUL);
-
-  piscarLed(PORTA_LED_VERMELHO);
-  piscarLed(PORTA_LED_AMARELO);
-  piscarLed(PORTA_LED_VERDE);*/
-
-  piscarTodosLedsAleatoriamente();
+  for (const auto mapx : mapBotaoLed){
+    int estadoBotao = digitalRead(mapx.first);
+    if (estadoBotao == LOW){
+      acenderLed(mapx.second);
+    }
+    else {
+      apagarLed(mapx.second);
+    }
+  }
 }

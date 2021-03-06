@@ -9,33 +9,31 @@ void apagarLed(int portaLed){
   digitalWrite(portaLed, LOW);
 }
 
-void piscarTodosLeds(){
-  acenderLed(PORTA_LED_VERDE);
-  acenderLed(PORTA_LED_AMARELO);
-  acenderLed(PORTA_LED_VERMELHO);
-  acenderLed(PORTA_LED_AZUL);
-  delay(MEIO_SEGUNDO);
-  apagarLed(PORTA_LED_VERDE);
-  apagarLed(PORTA_LED_AMARELO);
-  apagarLed(PORTA_LED_VERMELHO);
-  apagarLed(PORTA_LED_AZUL);
-  delay(MEIO_SEGUNDO);
-}
-
-void piscarTodosLedsAleatoriamente(){
-  for (int i = 0; i < 4; i++){
-    long portaLed = random(PORTA_LED_VERDE, PORTA_LED_AZUL + 1);
-    acenderLed(portaLed);
-    delay(UM_SEGUNDO);
-    apagarLed(portaLed);
-  }
-
-  piscarTodosLeds();
-}
-
 void piscarLed(int portaLed){
   acenderLed(portaLed);
   delay(MEIO_SEGUNDO);
   apagarLed(portaLed);
   delay(MEIO_SEGUNDO);
+}
+
+void piscarTodosLeds(){
+  acenderLed(LED_VERDE);
+  acenderLed(LED_AMARELO);
+  acenderLed(LED_VERMELHO);
+  acenderLed(LED_AZUL);
+  delay(MEIO_SEGUNDO);
+  apagarLed(LED_VERDE);
+  apagarLed(LED_AMARELO);
+  apagarLed(LED_VERMELHO);
+  apagarLed(LED_AZUL);
+  delay(MEIO_SEGUNDO);
+}
+
+void piscarTodosLedsAleatoriamente(){
+  for (int i = 0; i < 4; i++){
+    long portaLed = random(LED_VERDE, LED_AZUL + 1);
+    acenderLed(portaLed);
+    delay(UM_SEGUNDO);
+    apagarLed(portaLed);
+  }
 }
