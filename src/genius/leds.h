@@ -9,11 +9,13 @@ void apagarLed(int portaLed){
   digitalWrite(portaLed, LOW);
 }
 
-void piscarLed(int portaLed){
-  acenderLed(portaLed);
-  delay(MEIO_SEGUNDO);
-  apagarLed(portaLed);
-  delay(MEIO_SEGUNDO);
+void piscarLed(int portaLed, int numeroVezes = 1, int tempoMs = MEIO_SEGUNDO){
+  for(int i = 0; i < numeroVezes; i++){
+    acenderLed(portaLed);
+    delay(tempoMs);
+    apagarLed(portaLed);
+    delay(tempoMs);    
+  }
 }
 
 void piscarTodosLeds(){
@@ -36,4 +38,8 @@ void piscarTodosLedsAleatoriamente(){
     delay(UM_SEGUNDO);
     apagarLed(portaLed);
   }
+}
+
+int getLedAleatorio(){
+  return random(LED_VERDE, LED_AZUL + 1);
 }
