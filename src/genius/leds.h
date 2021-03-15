@@ -18,16 +18,24 @@ void piscarLed(int portaLed, int numeroVezes = 1, int tempoMs = MEIO_SEGUNDO){
   }
 }
 
-void piscarTodosLeds(){
+void acenderTodosLeds(){
   acenderLed(LED_VERDE);
   acenderLed(LED_AMARELO);
   acenderLed(LED_VERMELHO);
   acenderLed(LED_AZUL);
-  delay(MEIO_SEGUNDO);
+}
+
+void apagarTodosLeds(){
   apagarLed(LED_VERDE);
   apagarLed(LED_AMARELO);
   apagarLed(LED_VERMELHO);
   apagarLed(LED_AZUL);
+}
+
+void piscarTodosLeds(){
+  acenderTodosLeds();
+  delay(MEIO_SEGUNDO);
+  apagarTodosLeds();
   delay(MEIO_SEGUNDO);
 }
 

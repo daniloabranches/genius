@@ -4,7 +4,7 @@
 
 #define INDEFINIDO -1
 #define RODADA_UM 1
-#define RODADA_FINAL 5
+#define RODADA_FINAL 3
 
 int rodada = RODADA_UM;
 
@@ -49,9 +49,7 @@ void validarSequenciaLuzesPressionada(){
     piscarLed(luzPressionada, 1, 150);
     if (luzesRodada.isLast()){
       if (rodada == RODADA_FINAL){
-        piscarTodosLeds();
-        piscarTodosLeds();
-        piscarTodosLeds();
+        executarEventoSucesso();
         rodada = RODADA_UM;
       }
       else {
@@ -60,7 +58,7 @@ void validarSequenciaLuzesPressionada(){
     }
   }
   else {
-    piscarLed(LED_VERMELHO, 5, 100);
+    executarEventoErro();
     rodada = RODADA_UM;
     luzesRodada.clear();
   }
@@ -74,4 +72,73 @@ int getLuzPressionadaUsuario(){
     }
   }
   return INDEFINIDO;
+}
+
+void executarEventoSucesso(){
+  long tempoAgora = millis();
+  long novoTempoAgora = 0;
+  long diferencaTempoPassado = 0;
+  int passoLed = 1;
+  int passoSom = 1;
+  while(passoLed <= 5){
+    novoTempoAgora = millis();
+    diferencaTempoPassado = novoTempoAgora - tempoAgora;
+    passoLed = executarPassosLedEventoSucesso(passoLed, diferencaTempoPassado);
+    passoSom = executarPassosSomEventoSucesso(passoSom, diferencaTempoPassado);
+  }
+}
+
+int executarPassosLedEventoSucesso(int passoLed, long diferencaTempoPassado){
+  if (passoLed == 1){
+    acenderTodosLeds();
+    passoLed++;
+  }
+  else if (passoLed == 2 && diferencaTempoPassado >= 500){
+    apagarTodosLeds();
+    passoLed++;
+  }
+  else if (passoLed == 3 && diferencaTempoPassado >= 1000){
+    acenderTodosLeds();
+    passoLed++;
+  }
+  else if (passoLed == 4 && diferencaTempoPassado >= 1500){
+    apagarTodosLeds();
+    passoLed++;
+  }
+  else if (passoLed == 5 && diferencaTempoPassado >= 2000){
+    passoLed++;
+  }
+  return passoLed;
+}
+
+int executarPassosSomEventoSucesso(int passoSom, long diferencaTempoPassado){ 
+  if (passoSom == 1){
+    tone(13,262,200);
+    passoSom++;
+  }
+  else if (passoSom == 2 && diferencaTempoPassado >= 200){
+    tone(13,294,300);
+    passoSom++;
+  }
+  else if (passoSom == 3 && diferencaTempoPassado >= 400){
+    tone(13,330,300);
+    passoSom++;
+  }
+  else if (passoSom == 4 && diferencaTempoPassado >= 600){
+    tone(13,330,300);
+    passoSom++;
+  }
+  else if (passoSom == 5 && diferencaTempoPassado >= 900){
+    tone(13,349,300);
+    passoSom++;
+  }
+  else if (passoSom == 5 && diferencaTempoPassado >= 1200){
+    tone(13,349,300);
+  }
+  return passoSom;
+}
+
+void executarEventoErro(){
+  tone(BUZZER, 300, 500);
+  delay(500);
 }

@@ -8,6 +8,7 @@
 #define BOTAO_AMARELO 9
 #define BOTAO_VERMELHO 10
 #define BOTAO_AZUL 11
+#define BUZZER 13
 
 arx::map<int, int> mapBotaoLed {
   {BOTAO_VERDE, LED_VERDE},
@@ -24,5 +25,6 @@ void configurarPortasDigitais(){
   pinMode(BOTAO_VERDE, INPUT_PULLUP);
   pinMode(BOTAO_AMARELO, INPUT_PULLUP);
   pinMode(BOTAO_VERMELHO, INPUT_PULLUP);
-  pinMode(BOTAO_AZUL, INPUT_PULLUP);  
+  pinMode(BOTAO_AZUL, INPUT_PULLUP);
+  pinMode(BUZZER, OUTPUT);
 }
